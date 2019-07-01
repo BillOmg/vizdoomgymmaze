@@ -1,4 +1,4 @@
-from vizdoomgym.envs.vizdoomenv import VizdoomEnv
+from vizdoomgymmaze.envs.vizdoomenv import VizdoomEnv
 
 
 class VizdoomDefendLine(VizdoomEnv):
