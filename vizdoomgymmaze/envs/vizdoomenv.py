@@ -15,19 +15,19 @@ CONFIGS = [['basic.cfg', 3],                # 0
            ['take_cover.cfg', 2],           # 7
            ['deathmatch.cfg', 20],          # 8
            ['health_gathering_supreme.cfg', 3], # 9
-           ['selfmaze.cfg', 5],             # 10
+           ['selfmaze1.cfg', 5],            # 10
+           ['selfmaze2.cfg', 5],            # 11
           ]
 
 class VizdoomEnv(gym.Env):
 
-    def __init__(self, level, map="map01"):
+    def __init__(self, level):
 
         # init game
         self.game = DoomGame()
         self.game.set_screen_resolution(ScreenResolution.RES_640X480)
         scenarios_dir = os.path.join(os.path.dirname(__file__), 'scenarios')
         self.game.load_config(os.path.join(scenarios_dir, CONFIGS[level][0]))
-        self.game.set_doom_map(map)
         self.game.set_window_visible(False)
         self.game.init()
         self.state = None
