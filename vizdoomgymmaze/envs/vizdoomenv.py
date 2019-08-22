@@ -15,8 +15,10 @@ CONFIGS = [['basic.cfg', 3],                # 0
            ['take_cover.cfg', 2],           # 7
            ['deathmatch.cfg', 20],          # 8
            ['health_gathering_supreme.cfg', 3], # 9
-           ['selfmaze1.cfg', 5],            # 10
-           ['selfmaze2.cfg', 5],            # 11
+           ['selfmaze0.cfg', 5],            # 10
+           ['selfmaze1.cfg', 5],            # 11
+           ['selfmaze2.cfg', 5],            # 12
+           ['selfmaze3.cfg', 5],            # 13
           ]
 
 class VizdoomEnv(gym.Env):

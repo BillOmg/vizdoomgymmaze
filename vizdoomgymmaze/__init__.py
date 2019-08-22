@@ -51,6 +51,11 @@ register(
 )
 
 register(
+    id='VizdoomSelfMaze0-v0',
+    entry_point='vizdoomgymmaze.envs:VizdoomSelfMaze0'
+)
+
+register(
     id='VizdoomSelfMaze1-v0',
     entry_point='vizdoomgymmaze.envs:VizdoomSelfMaze1'
 )
@@ -58,4 +63,9 @@ register(
 register(
     id='VizdoomSelfMaze2-v0',
     entry_point='vizdoomgymmaze.envs:VizdoomSelfMaze2'
+)
+
+register(
+    id='VizdoomSelfMaze3-v0',
+    entry_point='vizdoomgymmaze.envs:VizdoomSelfMaze3'
 )

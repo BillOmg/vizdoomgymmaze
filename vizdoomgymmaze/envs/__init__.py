@@ -9,5 +9,7 @@ from vizdoomgymmaze.envs.vizdoompredictposition import VizdoomPredictPosition
 from vizdoomgymmaze.envs.vizdoomtakecover import VizdoomTakeCover
 from vizdoomgymmaze.envs.vizdoomdeathmatch import VizdoomDeathmatch
 from vizdoomgymmaze.envs.vizdoomhealthgatheringsupreme import VizdoomHealthGatheringSupreme
+from vizdoomgymmaze.envs.vizdoomselfmaze0 import VizdoomSelfMaze0
 from vizdoomgymmaze.envs.vizdoomselfmaze1 import VizdoomSelfMaze1
 from vizdoomgymmaze.envs.vizdoomselfmaze2 import VizdoomSelfMaze2
+from vizdoomgymmaze.envs.vizdoomselfmaze3 import VizdoomSelfMaze3
