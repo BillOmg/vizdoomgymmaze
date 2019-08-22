@@ -14,6 +14,8 @@ cd vizdoomgymmaze
 pip install -e .
 ```
 
+## Usage
+
 Use one of the environments (see list below for all available envs):
 ```python
 import gym
@@ -33,7 +35,7 @@ for i in range(episodes)：
 env.close()
 
 ```
-
+ ## Environments
 List of available environments:
 ```python
 VizdoomBasic-v0
@@ -46,5 +48,10 @@ VizdoomPredictPosition-v0
 VizdoomTakeCover-v0
 VizdoomDeathmatch-v0
 VizdoomHealthGatheringSupreme-v0
-VizdoomSelfMaze-V0
+VizdoomSelfMaze0-V0
+VizdoomSelfMaze1-V0
+VizdoomSelfMaze2-V0
+VizdoomSelfMaze3-V0
+VizdoomSelfMaze4-V0
+VizdoomSelfMaze5-V0
 ```
