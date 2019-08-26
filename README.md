@@ -48,10 +48,10 @@ VizdoomPredictPosition-v0
 VizdoomTakeCover-v0
 VizdoomDeathmatch-v0
 VizdoomHealthGatheringSupreme-v0
-VizdoomSelfMaze0-V0
-VizdoomSelfMaze1-V0
-VizdoomSelfMaze2-V0
-VizdoomSelfMaze3-V0
-VizdoomSelfMaze4-V0
-VizdoomSelfMaze5-V0
+VizdoomSelfMaze0-v0
+VizdoomSelfMaze1-v0
+VizdoomSelfMaze2-v0
+VizdoomSelfMaze3-v0
+VizdoomSelfMaze4-v0
+VizdoomSelfMaze5-v0
 ```
