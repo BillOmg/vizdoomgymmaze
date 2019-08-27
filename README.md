@@ -54,4 +54,17 @@ VizdoomSelfMaze2-v0
 VizdoomSelfMaze3-v0
 VizdoomSelfMaze4-v0
 VizdoomSelfMaze5-v0
+VizdoomSelfMaze5-v0
+# Indoor maze examples as follows:
+VizdoomMazeOne1-v0
 ```
+
+If you want to use indoor mazes, the environment name should like this: "VizdoomMaze\[One/Two/Three/Four][1~20]-v0"
+
+For example,
+
+```env = gym.make('VizdoomMazeOne1-v0')```
+
+"One" means apartment has one bedroom, while "Two" means apartment has two bedroom.
+
+With the bedrooms increasing, the structure of apartment become more and more complex, but the whole size of four style mazes is the same.

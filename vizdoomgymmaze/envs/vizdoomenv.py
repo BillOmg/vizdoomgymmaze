@@ -4,6 +4,7 @@ from vizdoom import *
 import numpy as np
 import os
 from gym.envs.classic_control import rendering
+import cv2
 
 CONFIGS = [['basic.cfg', 3],                # 0
            ['deadly_corridor.cfg', 7],      # 1
@@ -15,10 +16,90 @@ CONFIGS = [['basic.cfg', 3],                # 0
            ['take_cover.cfg', 2],           # 7
            ['deathmatch.cfg', 20],          # 8
            ['health_gathering_supreme.cfg', 3], # 9
-           ['selfmaze0.cfg', 5],            # 10
-           ['selfmaze1.cfg', 5],            # 11
-           ['selfmaze2.cfg', 5],            # 12
-           ['selfmaze3.cfg', 5],            # 13
+           ['selfmaze0.wad', 3],            # 10
+           ['selfmaze1.wad', 3],            # 11
+           ['selfmaze2.wad', 3],            # 12
+           ['selfmaze3.wad', 3],            # 13
+           ['one/one_1.wad', 3],            # 14
+           ['one/one_2.wad', 3],            # 15
+           ['one/one_3.wad', 3],            # 16
+           ['one/one_4.wad', 3],            # 17
+           ['one/one_5.wad', 3],            # 18
+           ['one/one_6.wad', 3],            # 19
+           ['one/one_7.wad', 3],            # 20
+           ['one/one_8.wad', 3],            # 21
+           ['one/one_9.wad', 3],            # 22
+           ['one/one_10.wad', 3],           # 23
+           ['one/one_11.wad', 3],           # 24
+           ['one/one_12.wad', 3],           # 25
+           ['one/one_13.wad', 3],           # 26
+           ['one/one_14.wad', 3],           # 27
+           ['one/one_15.wad', 3],           # 28
+           ['one/one_16.wad', 3],           # 29
+           ['one/one_17.wad', 3],           # 30
+           ['one/one_18.wad', 3],           # 31
+           ['one/one_19.wad', 3],           # 32
+           ['one/one_20.wad', 3],           # 33
+           ['two/two_1.wad', 3],            # 34
+           ['two/two_2.wad', 3],            # 35
+           ['two/two_3.wad', 3],            # 36
+           ['two/two_4.wad', 3],            # 37
+           ['two/two_5.wad', 3],            # 38
+           ['two/two_6.wad', 3],            # 39
+           ['two/two_7.wad', 3],            # 40
+           ['two/two_8.wad', 3],            # 41
+           ['two/two_9.wad', 3],            # 42
+           ['two/two_10.wad', 3],           # 43
+           ['two/two_11.wad', 3],           # 44
+           ['two/two_12.wad', 3],           # 45
+           ['two/two_13.wad', 3],           # 46
+           ['two/two_14.wad', 3],           # 47
+           ['two/two_15.wad', 3],           # 48
+           ['two/two_16.wad', 3],           # 49
+           ['two/two_17.wad', 3],           # 50
+           ['two/two_18.wad', 3],           # 51
+           ['two/two_19.wad', 3],           # 52
+           ['two/two_20.wad', 3],           # 53
+           ['three/three_1.wad', 3],        # 54
+           ['three/three_2.wad', 3],        # 55
+           ['three/three_3.wad', 3],        # 56
+           ['three/three_4.wad', 3],        # 57
+           ['three/three_5.wad', 3],        # 58
+           ['three/three_6.wad', 3],        # 59
+           ['three/three_7.wad', 3],        # 60
+           ['three/three_8.wad', 3],        # 61
+           ['three/three_9.wad', 3],        # 62
+           ['three/three_10.wad', 3],       # 63
+           ['three/three_11.wad', 3],       # 64
+           ['three/three_12.wad', 3],       # 65
+           ['three/three_13.wad', 3],       # 66
+           ['three/three_14.wad', 3],       # 67
+           ['three/three_15.wad', 3],       # 68
+           ['three/three_16.wad', 3],       # 69
+           ['three/three_17.wad', 3],       # 70
+           ['three/three_18.wad', 3],       # 71
+           ['three/three_19.wad', 3],       # 72
+           ['three/three_20.wad', 3],       # 73
+           ['four/four_1.wad', 3],          # 74
+           ['four/four_2.wad', 3],          # 75
+           ['four/four_3.wad', 3],          # 76
+           ['four/four_4.wad', 3],          # 77
+           ['four/four_5.wad', 3],          # 78
+           ['four/four_6.wad', 3],          # 79
+           ['four/four_7.wad', 3],          # 80
+           ['four/four_8.wad', 3],          # 81
+           ['four/four_9.wad', 3],          # 82
+           ['four/four_10.wad', 3],         # 83
+           ['four/four_11.wad', 3],         # 84
+           ['four/four_12.wad', 3],         # 85
+           ['four/four_13.wad', 3],         # 86
+           ['four/four_14.wad', 3],         # 87
+           ['four/four_15.wad', 3],         # 88
+           ['four/four_16.wad', 3],         # 89
+           ['four/four_17.wad', 3],         # 90
+           ['four/four_18.wad', 3],         # 91
+           ['four/four_19.wad', 3],         # 92
+           ['four/four_20.wad', 3],         # 93
           ]
 
 class VizdoomEnv(gym.Env):
@@ -29,13 +110,14 @@ class VizdoomEnv(gym.Env):
         self.game = DoomGame()
         self.game.set_screen_resolution(ScreenResolution.RES_640X480)
         scenarios_dir = os.path.join(os.path.dirname(__file__), 'scenarios')
-        self.game.load_config(os.path.join(scenarios_dir, CONFIGS[level][0]))
-        self.game.set_window_visible(False)
+        self.game.load_config(os.path.join(scenarios_dir, "default.cfg"))
+        self.game.set_doom_scenario_path(os.path.join(scenarios_dir, CONFIGS[level][0]))
+        self.game.set_window_visible(True)
         self.game.init()
         self.state = None
 
         self.action_space = spaces.Discrete(CONFIGS[level][1])
-        self.observation_space = spaces.Box(0, 255, (self.game.get_screen_height(),
+        self.observation_space = spaces.Box(0, 23, (self.game.get_screen_height(),
                                                      self.game.get_screen_width(),
                                                      self.game.get_screen_channels()),
                                             dtype=np.uint8)
@@ -50,6 +132,11 @@ class VizdoomEnv(gym.Env):
 
         reward = self.game.make_action(act)
         state = self.game.get_state()
+        if state.automap_buffer is not None:
+            map = np.transpose(state.automap_buffer, (1, 2, 0))
+            print(map.shape)
+            cv2.imshow('ViZDoom Automap Buffer', map)
+        cv2.waitKey(28)
         done = self.game.is_episode_finished()
         if not done:
             observation = np.transpose(state.screen_buffer, (1, 2, 0))
